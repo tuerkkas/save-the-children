@@ -1,0 +1,22 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+info:
+  env:
+    enabled: true
+  application:
+    name: save-the-children=users
+    description: Collecting user information
+    author: Jorge Diaz
+    version: V.1.0.0
+
+spring:
+  profiles:
+    active: dev
+  jpa:
+    show-sql: true
+    open-in-view: false
+
+
