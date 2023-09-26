@@ -35,7 +35,7 @@ public class UserService {
     @Transactional
     public UserDto save(UserDto userDto) throws RecordExistsException {
         //Validate user doesnt exist
-        if (userRepository.existsUserEntitiesByEmailEqualsIgnoreCase(userDto.getEmail())) {
+        if (userRepository.existsUserEntitiesByEmailEquals(userDto.getEmail())) {
             throw new RecordExistsException(new StringBuilder("User exist on database with email= ").append(userDto.getEmail()).toString());
         }
         return MapUserComponent.toDto(userRepository.save(MapUserComponent.toEntity(userDto)));
@@ -66,8 +66,8 @@ public class UserService {
      * @return true if Exist, false if not
      */
     @Transactional
-    public Boolean existsUserEntitiesByEmailEqualsIgnoreCase(String email) {
-        return userRepository.existsUserEntitiesByEmailEqualsIgnoreCase(email);
+    public Boolean existsUserEntitiesByEmailEquals(String email) {
+        return userRepository.existsUserEntitiesByEmailEquals(email);
     }
 
     /**
