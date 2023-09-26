@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  postgres:
+    container_name: users_db
+    image: postgres
+    environment:
+      POSTGRES_DB: save-the-children-users
+      POSTGRES_PASSWORD: GW873S&%
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
