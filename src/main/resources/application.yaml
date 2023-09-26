@@ -19,4 +19,14 @@ spring:
     show-sql: true
     open-in-view: false
 
+logging:
+  file:
+    name: ./save-the-children-users.log
+
+jwt:
+  key: eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5NTY4MTEyMSwiaWF0IjoxNjk1NjgxMTIxfQ.mL4RBqBrEbQmVmAbRZP1R50e22Q7O0-D-ZcqjYqAndM
+
+authentication:
+  userName: save-the-children
+  password: £$ASCTGDSFESAFDG
 

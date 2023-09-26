@@ -1,7 +1,9 @@
+version: "3.9"
+
 services:
   postgres:
     container_name: users_db
-    image: postgres:latest
+    image: postgres
     environment:
       POSTGRES_DB: save-the-children-users
       POSTGRES_PASSWORD: GW873S&%
