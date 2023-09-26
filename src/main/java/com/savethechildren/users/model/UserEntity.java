@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Data
@@ -34,7 +33,7 @@ public class UserEntity {
     @Convert(converter = AesEncryptor.class)
     private String email;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DonationEntity> donations;
 
     public UserEntity(UUID id, String firstName, String lastName, String email){

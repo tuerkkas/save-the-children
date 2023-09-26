@@ -3,18 +3,17 @@ package com.savethechildren.users.component;
 import com.savethechildren.users.dto.UserDto;
 import com.savethechildren.users.model.UserEntity;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class MapUserComponentTest {
 
     //@Autowired
-   //private MapUserComponent mapUserComponent;
+    //private MapUserComponent mapUserComponent;
     @Test
     public void whenConvertUserEntityToUserDto_thenCorrect() {
         UserEntity userEntity = new UserEntity();
@@ -25,7 +24,7 @@ class MapUserComponentTest {
 
         UserDto userDto = MapUserComponent.toDto(userEntity);
 
-        assertEquals(userEntity.getId(),userDto.getId());
+        assertEquals(userEntity.getId(), userDto.getId());
         assertEquals(userEntity.getFirstName(), userDto.getFirstName());
         assertEquals(userEntity.getLastName(), userDto.getLastName());
         assertEquals(userEntity.getEmail(), userDto.getEmail());
@@ -38,7 +37,7 @@ class MapUserComponentTest {
 
         UserEntity userEntity = MapUserComponent.toEntity(userDto);
 
-        assertEquals(userDto.getId(),userEntity.getId());
+        assertEquals(userDto.getId(), userEntity.getId());
         assertEquals(userDto.getFirstName(), userEntity.getFirstName());
         assertEquals(userDto.getLastName(), userEntity.getLastName());
         assertEquals(userDto.getEmail(), userEntity.getEmail());

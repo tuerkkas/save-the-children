@@ -13,11 +13,11 @@ public class UserDonationDto {
 
     UUID userId;
 
-    @NotNull(message ="is required")
+    @NotNull(message = "is required")
     @Positive(message = " must be a positive quantity")
     BigDecimal donation;
-    @NotBlank(message ="is required")
+    @NotBlank(message = "is required")
     @Size(min = 3, max = 3, message = " 3 digits required")
-    @Pattern(regexp = "^[a-zA-Z]+$",message=" format not valid")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = " format not valid")
     String currency;
 }

@@ -33,7 +33,7 @@ public class SecurityConfig {
     private final String userName;
     private final String password;
 
-    public SecurityConfig(@Value("${jwt.key}")String jwtKey,
+    public SecurityConfig(@Value("${jwt.key}") String jwtKey,
                           @Value("${authentication.userName}") String userName,
                           @Value("${authentication.password}") String password) {
         this.jwtKey = jwtKey;
@@ -49,7 +49,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         return new InMemoryUserDetailsManager(
                 User.withUsername(userName)
-                        .password("{noop}"+password)
+                        .password("{noop}" + password)
                         .authorities("READ", "ROLE_USER")
                         .build());
     }
@@ -70,12 +70,12 @@ public class SecurityConfig {
     }
 
     @Bean
-    JwtEncoder jwtEncoder(){
+    JwtEncoder jwtEncoder() {
         return new NimbusJwtEncoder(new ImmutableSecret<>(jwtKey.getBytes()));
     }
 
     @Bean
-    public JwtDecoder jtdDecoder(){
+    public JwtDecoder jtdDecoder() {
         byte[] bytes = jwtKey.getBytes();
         SecretKeySpec secretKeySpec = new SecretKeySpec(bytes, "RSA");
         return NimbusJwtDecoder.withSecretKey(secretKeySpec).macAlgorithm(MacAlgorithm.HS512).build();

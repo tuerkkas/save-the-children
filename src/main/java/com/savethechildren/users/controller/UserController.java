@@ -4,7 +4,6 @@ import com.savethechildren.users.dto.UserDto;
 import com.savethechildren.users.exception.RecordExistsException;
 import com.savethechildren.users.service.UserService;
 import jakarta.validation.Valid;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,8 +50,8 @@ public class UserController {
 
         Optional<UserDto> updatedUserDto = userService.update(user);
 
-        if(updatedUserDto.isPresent()) {
-           return ResponseEntity.status(HttpStatus.CREATED).body("Resource updated successfully");
+        if (updatedUserDto.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CREATED).body("Resource updated successfully");
         }
         return ResponseEntity.notFound().build();
     }
@@ -60,9 +59,9 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable UUID id) {
         ResponseEntity<Void> responseEntity = ResponseEntity.notFound().build();
-        if(userService.existsById(id)) {
+        if (userService.existsById(id)) {
             userService.deleteById(id);
-            responseEntity =  ResponseEntity.noContent().build();
+            responseEntity = ResponseEntity.noContent().build();
         }
         return responseEntity;
     }

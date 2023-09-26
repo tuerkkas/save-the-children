@@ -11,6 +11,7 @@ import com.savethechildren.users.model.UserEntity;
 import com.savethechildren.users.repository.DonationRepository;
 import com.savethechildren.users.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -26,6 +27,7 @@ public class UserDonationService {
         this.donationRepository = donationRepository;
     }
 
+    @Transactional
     public DonationDto save(UserDonationDto userDonationDto) throws RecordNotFoundException {
         DonationDto donationDto = null;
         UserDto userDto = null;
