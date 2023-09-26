@@ -39,7 +39,7 @@ public class TokenService {
                 .issuedAt(now)
                 .expiresAt(now.plus(1, ChronoUnit.HOURS)) //expires in 1 hour
                 .subject(authentication.getName())
-                .claim("scope",scope)
+                .claim("scope", scope)
                 .build();
 
         var encoderParameters = JwtEncoderParameters.from(JwsHeader.with(MacAlgorithm.HS512).build(), jwtClaimsSet);

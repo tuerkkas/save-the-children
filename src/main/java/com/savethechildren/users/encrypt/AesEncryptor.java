@@ -86,7 +86,7 @@ public class AesEncryptor implements AttributeConverter<Object, String> {
 
     public Object convertToEntityAttribute(String dbData) {
         Object object = null;
-        if(dbData == null){
+        if (dbData == null) {
             return null;
         }
         initCipher(Cipher.DECRYPT_MODE);
@@ -95,9 +95,9 @@ public class AesEncryptor implements AttributeConverter<Object, String> {
 
         try {
             object = this.deserialize(bytes);
-        }catch (IOException e){
+        } catch (IOException e) {
             log.error(e);
-        }catch (ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             log.error(e);
         }
 
@@ -107,11 +107,11 @@ public class AesEncryptor implements AttributeConverter<Object, String> {
 
     private Object deserialize(byte[] bytes) throws IOException, ClassNotFoundException {
 
-           ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
-           ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-           Object object = objectInputStream.readObject();
-           objectInputStream.close();
-           byteArrayInputStream.close();
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+        ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+        Object object = objectInputStream.readObject();
+        objectInputStream.close();
+        byteArrayInputStream.close();
         return object;
     }
 }

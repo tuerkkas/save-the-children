@@ -2,13 +2,11 @@ package com.savethechildren.users.service;
 
 import com.savethechildren.users.dto.DonationDto;
 import com.savethechildren.users.dto.UserDonationDto;
-import com.savethechildren.users.dto.UserDto;
 import com.savethechildren.users.exception.RecordNotFoundException;
 import com.savethechildren.users.model.DonationEntity;
 import com.savethechildren.users.model.UserEntity;
 import com.savethechildren.users.repository.DonationRepository;
 import com.savethechildren.users.repository.UserRepository;
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -20,7 +18,7 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -44,7 +42,7 @@ class UserDonationServiceTest {
 
 
         UserEntity actualUser = new UserEntity(UUID.fromString("e58ed763-928c-4155-bee9-fdbaaadc15f3"), "jorge", "diaz", "jorge@gmail.com");
-        DonationEntity donationActual = new DonationEntity(UUID.fromString("e58ed763-928c-4155-bee9-fdbaabdc15f3"), actualUser,new BigDecimal(100),new Timestamp(new Date().getTime()),  "EUR");
+        DonationEntity donationActual = new DonationEntity(UUID.fromString("e58ed763-928c-4155-bee9-fdbaabdc15f3"), actualUser, new BigDecimal(100), new Timestamp(new Date().getTime()), "EUR");
         //Mock repository behaviour
 
         when(userRepository.findByIdEquals(any(UUID.class))).thenReturn(Optional.of(actualUser));

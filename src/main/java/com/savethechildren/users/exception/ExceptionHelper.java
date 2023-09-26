@@ -14,6 +14,7 @@ public class ExceptionHelper {
 
     /**
      * Exception used to create a response with failure Record creation due to Record Exist on database.
+     *
      * @param recordExistsException
      * @return
      */
@@ -33,7 +34,7 @@ public class ExceptionHelper {
     @ExceptionHandler(value = {org.springframework.web.bind.MethodArgumentNotValidException.class})
     public ResponseEntity<Object> handleException(org.springframework.web.bind.MethodArgumentNotValidException ex) {
         log.error(ex.getMessage());
-        return new ResponseEntity(ex.getBindingResult().getFieldErrors().stream().map(fieldError -> new StringBuilder(fieldError.getField()).append(": ").append(fieldError.getDefaultMessage()).toString()).collect(Collectors.toList()) , HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(ex.getBindingResult().getFieldErrors().stream().map(fieldError -> new StringBuilder(fieldError.getField()).append(": ").append(fieldError.getDefaultMessage()).toString()).collect(Collectors.toList()), HttpStatus.BAD_REQUEST);
     }
 
 }

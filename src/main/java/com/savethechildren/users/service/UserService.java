@@ -8,6 +8,7 @@ import com.savethechildren.users.exception.RecordExistsException;
 import com.savethechildren.users.model.UserEntity;
 import com.savethechildren.users.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +32,7 @@ public class UserService {
      * @return Dto object created into the database
      * @throws RecordExistsException //will be thrown if email exist on the database
      */
+    @Transactional
     public UserDto save(UserDto userDto) throws RecordExistsException {
         //Validate user doesnt exist
         if (userRepository.existsUserEntitiesByEmailEqualsIgnoreCase(userDto.getEmail())) {
@@ -45,14 +47,14 @@ public class UserService {
      * @param id
      * @return Dto of object stored on the database
      */
+    @Transactional
+
     public Optional<UserDto> findById(UUID id) {
         Optional<UserEntity> userEntity = userRepository.findByIdEquals(id);
         UserDto userDto = null;
         if (userEntity.isPresent()) {
             userDto = MapUserComponent.toDto(userEntity.get());
-           // if (userEntity.get().getDonations() != null) {
-                userDto.setDonationDtoList(userEntity.get().getDonations().stream().map(donationEntity -> MapDonationComponent.toDto(donationEntity)).collect(Collectors.toList()));
-            //}
+            userDto.setDonationDtoList(userEntity.get().getDonations().stream().map(donationEntity -> MapDonationComponent.toDto(donationEntity)).collect(Collectors.toList()));
         }
         return Optional.ofNullable(userDto);
     }
@@ -63,6 +65,7 @@ public class UserService {
      * @param email
      * @return true if Exist, false if not
      */
+    @Transactional
     public Boolean existsUserEntitiesByEmailEqualsIgnoreCase(String email) {
         return userRepository.existsUserEntitiesByEmailEqualsIgnoreCase(email);
     }
@@ -73,6 +76,7 @@ public class UserService {
      * @param userDto
      * @return UserDto with information updated or null
      */
+    @Transactional
     public Optional<UserDto> update(UserDto userDto) {
         //Validate record exist
         Optional<UserEntity> userEntityToUpdate = userRepository.findByIdEquals(userDto.getId());
@@ -90,6 +94,7 @@ public class UserService {
      *
      * @return list of all users stored into the databse
      */
+    @Transactional
     public List<UserDto> findAll() {
         return userRepository.findAll().stream().map(userEntity -> {
             UserDto userDto = MapUserComponent.toDto(userEntity);
@@ -103,10 +108,12 @@ public class UserService {
      *
      * @param id UUID user to delete
      */
+    @Transactional
     public void deleteById(UUID id) {
         userRepository.deleteById(id);
     }
 
+    @Transactional
     public Boolean existsById(UUID id) {
         return userRepository.existsById(id);
     }

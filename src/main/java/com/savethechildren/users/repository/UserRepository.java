@@ -11,8 +11,8 @@ import java.util.UUID;
 public interface UserRepository extends ListCrudRepository<UserEntity, UUID> {
 
 
-
     public Optional<UserEntity> findByIdEquals(UUID id);
+
     public Boolean existsUserEntitiesByEmailEqualsIgnoreCase(String email);
 
 }
