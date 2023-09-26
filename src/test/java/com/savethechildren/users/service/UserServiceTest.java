@@ -103,9 +103,9 @@ class UserServiceTest {
         UserEntity user = Mockito.mock(UserEntity.class);
 
         //Mock repository behaviour
-        when(userRepository.existsUserEntitiesByEmailEqualsIgnoreCase(user.getEmail())).thenReturn(true);
+        when(userRepository.existsUserEntitiesByEmailEquals(user.getEmail())).thenReturn(true);
 
-        Boolean isUserFound = userService.existsUserEntitiesByEmailEqualsIgnoreCase(user.getEmail());
+        Boolean isUserFound = userService.existsUserEntitiesByEmailEquals(user.getEmail());
 
         assertTrue(isUserFound);
 
@@ -119,9 +119,9 @@ class UserServiceTest {
         UserEntity user = Mockito.mock(UserEntity.class);
 
         //Mock repository behaviour
-        when(userRepository.existsUserEntitiesByEmailEqualsIgnoreCase(user.getEmail())).thenReturn(false);
+        when(userRepository.existsUserEntitiesByEmailEquals(user.getEmail())).thenReturn(false);
 
-        Boolean isUserFound = userService.existsUserEntitiesByEmailEqualsIgnoreCase(user.getEmail());
+        Boolean isUserFound = userService.existsUserEntitiesByEmailEquals(user.getEmail());
 
         assertFalse(isUserFound);
 

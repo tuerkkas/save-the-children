@@ -13,6 +13,6 @@ public interface UserRepository extends ListCrudRepository<UserEntity, UUID> {
 
     public Optional<UserEntity> findByIdEquals(UUID id);
 
-    public Boolean existsUserEntitiesByEmailEqualsIgnoreCase(String email);
+    public Boolean existsUserEntitiesByEmailEquals(String email);
 
 }
